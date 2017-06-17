@@ -5,6 +5,9 @@
 ===========================================================================*/
 
 #include "GeneratedCppIncludes.h"
+#ifndef LATUS_InteractActor_generated_h
+	#include "ItemsCpp/base/InteractActor.h"
+#endif
 #ifndef LATUS_LatusCharacter_generated_h
 	#include "LatusCharacter.h"
 #endif

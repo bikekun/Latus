@@ -15,6 +15,12 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCode1Latus() {}
 #if USE_COMPILED_IN_NATIVES
 // Cross Module References
+	ENGINE_API class UScriptStruct* Z_Construct_UScriptStruct_FHitResult();
+	ENGINE_API class UClass* Z_Construct_UClass_UPrimitiveComponent_NoRegister();
+	ENGINE_API class UClass* Z_Construct_UClass_AActor_NoRegister();
+	ENGINE_API class UClass* Z_Construct_UClass_AActor();
+	ENGINE_API class UClass* Z_Construct_UClass_UStaticMeshComponent_NoRegister();
+	ENGINE_API class UClass* Z_Construct_UClass_USphereComponent_NoRegister();
 	ENGINE_API class UClass* Z_Construct_UClass_ACharacter();
 	ENGINE_API class UClass* Z_Construct_UClass_UAnimMontage_NoRegister();
 	ENGINE_API class UClass* Z_Construct_UClass_USoundBase_NoRegister();
@@ -25,13 +31,12 @@ void EmptyLinkFunctionForGeneratedCode1Latus() {}
 	ENGINE_API class UClass* Z_Construct_UClass_USkeletalMeshComponent_NoRegister();
 	ENGINE_API class UClass* Z_Construct_UClass_AGameModeBase();
 	ENGINE_API class UClass* Z_Construct_UClass_AHUD();
-	ENGINE_API class UScriptStruct* Z_Construct_UScriptStruct_FHitResult();
-	ENGINE_API class UClass* Z_Construct_UClass_UPrimitiveComponent_NoRegister();
-	ENGINE_API class UClass* Z_Construct_UClass_AActor_NoRegister();
-	ENGINE_API class UClass* Z_Construct_UClass_AActor();
 	ENGINE_API class UClass* Z_Construct_UClass_UProjectileMovementComponent_NoRegister();
-	ENGINE_API class UClass* Z_Construct_UClass_USphereComponent_NoRegister();
 
+	LATUS_API class UScriptStruct* Z_Construct_UScriptStruct_FItemParameters();
+	LATUS_API class UFunction* Z_Construct_UFunction_AInteractActor_OnOverlapBegin();
+	LATUS_API class UClass* Z_Construct_UClass_AInteractActor_NoRegister();
+	LATUS_API class UClass* Z_Construct_UClass_AInteractActor();
 	LATUS_API class UClass* Z_Construct_UClass_ALatusCharacter_NoRegister();
 	LATUS_API class UClass* Z_Construct_UClass_ALatusCharacter();
 	LATUS_API class UClass* Z_Construct_UClass_ALatusGameMode_NoRegister();
@@ -42,6 +47,144 @@ void EmptyLinkFunctionForGeneratedCode1Latus() {}
 	LATUS_API class UClass* Z_Construct_UClass_ALatusProjectile_NoRegister();
 	LATUS_API class UClass* Z_Construct_UClass_ALatusProjectile();
 	LATUS_API class UPackage* Z_Construct_UPackage__Script_Latus();
+class UScriptStruct* FItemParameters::StaticStruct()
+{
+	extern LATUS_API class UPackage* Z_Construct_UPackage__Script_Latus();
+	static class UScriptStruct* Singleton = NULL;
+	if (!Singleton)
+	{
+		extern LATUS_API class UScriptStruct* Z_Construct_UScriptStruct_FItemParameters();
+		extern LATUS_API uint32 Get_Z_Construct_UScriptStruct_FItemParameters_CRC();
+		Singleton = GetStaticStruct(Z_Construct_UScriptStruct_FItemParameters, Z_Construct_UPackage__Script_Latus(), TEXT("ItemParameters"), sizeof(FItemParameters), Get_Z_Construct_UScriptStruct_FItemParameters_CRC());
+	}
+	return Singleton;
+}
+static FCompiledInDeferStruct Z_CompiledInDeferStruct_UScriptStruct_FItemParameters(FItemParameters::StaticStruct, TEXT("/Script/Latus"), TEXT("ItemParameters"), false, nullptr, nullptr);
+static struct FScriptStruct_Latus_StaticRegisterNativesFItemParameters
+{
+	FScriptStruct_Latus_StaticRegisterNativesFItemParameters()
+	{
+		UScriptStruct::DeferCppStructOps(FName(TEXT("ItemParameters")),new UScriptStruct::TCppStructOps<FItemParameters>);
+	}
+} ScriptStruct_Latus_StaticRegisterNativesFItemParameters;
+	UScriptStruct* Z_Construct_UScriptStruct_FItemParameters()
+	{
+		UPackage* Outer = Z_Construct_UPackage__Script_Latus();
+		extern uint32 Get_Z_Construct_UScriptStruct_FItemParameters_CRC();
+		static UScriptStruct* ReturnStruct = FindExistingStructIfHotReloadOrDynamic(Outer, TEXT("ItemParameters"), sizeof(FItemParameters), Get_Z_Construct_UScriptStruct_FItemParameters_CRC(), false);
+		if (!ReturnStruct)
+		{
+			ReturnStruct = new(EC_InternalUseOnlyConstructor, Outer, TEXT("ItemParameters"), RF_Public|RF_Transient|RF_MarkAsNative) UScriptStruct(FObjectInitializer(), NULL, new UScriptStruct::TCppStructOps<FItemParameters>, EStructFlags(0x00000001));
+			UProperty* NewProp_ItemName = new(EC_InternalUseOnlyConstructor, ReturnStruct, TEXT("ItemName"), RF_Public|RF_Transient|RF_MarkAsNative) UStrProperty(CPP_PROPERTY_BASE(ItemName, FItemParameters), 0x0010000000000001);
+			ReturnStruct->StaticLink();
+#if WITH_METADATA
+			UMetaData* MetaData = ReturnStruct->GetOutermost()->GetMetaData();
+			MetaData->SetValue(ReturnStruct, TEXT("BlueprintType"), TEXT("true"));
+			MetaData->SetValue(ReturnStruct, TEXT("ModuleRelativePath"), TEXT("ItemsCpp/base/InteractActor.h"));
+			MetaData->SetValue(NewProp_ItemName, TEXT("Category"), TEXT("ItemParameters"));
+			MetaData->SetValue(NewProp_ItemName, TEXT("ModuleRelativePath"), TEXT("ItemsCpp/base/InteractActor.h"));
+			MetaData->SetValue(NewProp_ItemName, TEXT("ToolTip"), TEXT("\\brief Item name"));
+#endif
+		}
+		return ReturnStruct;
+	}
+	uint32 Get_Z_Construct_UScriptStruct_FItemParameters_CRC() { return 1819068590U; }
+	void AInteractActor::StaticRegisterNativesAInteractActor()
+	{
+		UClass* Class = AInteractActor::StaticClass();
+		static const TNameNativePtrPair<ANSICHAR> AnsiFuncs[] = {
+			{ "OnOverlapBegin", (Native)&AInteractActor::execOnOverlapBegin },
+		};
+		FNativeFunctionRegistrar::RegisterFunctions(Class, AnsiFuncs, 1);
+	}
+	UFunction* Z_Construct_UFunction_AInteractActor_OnOverlapBegin()
+	{
+		struct InteractActor_eventOnOverlapBegin_Parms
+		{
+			UPrimitiveComponent* OverlappedComp;
+			AActor* OtherActor;
+			UPrimitiveComponent* OtherComp;
+			int32 OtherBodyIndex;
+			bool bFromSweep;
+			FHitResult SweepResult;
+		};
+		UObject* Outer=Z_Construct_UClass_AInteractActor();
+		static UFunction* ReturnFunction = NULL;
+		if (!ReturnFunction)
+		{
+			ReturnFunction = new(EC_InternalUseOnlyConstructor, Outer, TEXT("OnOverlapBegin"), RF_Public|RF_Transient|RF_MarkAsNative) UFunction(FObjectInitializer(), NULL, 0x00420401, 65535, sizeof(InteractActor_eventOnOverlapBegin_Parms));
+			UProperty* NewProp_SweepResult = new(EC_InternalUseOnlyConstructor, ReturnFunction, TEXT("SweepResult"), RF_Public|RF_Transient|RF_MarkAsNative) UStructProperty(CPP_PROPERTY_BASE(SweepResult, InteractActor_eventOnOverlapBegin_Parms), 0x0010008008000182, Z_Construct_UScriptStruct_FHitResult());
+			CPP_BOOL_PROPERTY_BITMASK_STRUCT(bFromSweep, InteractActor_eventOnOverlapBegin_Parms, bool);
+			UProperty* NewProp_bFromSweep = new(EC_InternalUseOnlyConstructor, ReturnFunction, TEXT("bFromSweep"), RF_Public|RF_Transient|RF_MarkAsNative) UBoolProperty(FObjectInitializer(), EC_CppProperty, CPP_BOOL_PROPERTY_OFFSET(bFromSweep, InteractActor_eventOnOverlapBegin_Parms), 0x0010000000000080, CPP_BOOL_PROPERTY_BITMASK(bFromSweep, InteractActor_eventOnOverlapBegin_Parms), sizeof(bool), true);
+			UProperty* NewProp_OtherBodyIndex = new(EC_InternalUseOnlyConstructor, ReturnFunction, TEXT("OtherBodyIndex"), RF_Public|RF_Transient|RF_MarkAsNative) UIntProperty(CPP_PROPERTY_BASE(OtherBodyIndex, InteractActor_eventOnOverlapBegin_Parms), 0x0010000000000080);
+			UProperty* NewProp_OtherComp = new(EC_InternalUseOnlyConstructor, ReturnFunction, TEXT("OtherComp"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(CPP_PROPERTY_BASE(OtherComp, InteractActor_eventOnOverlapBegin_Parms), 0x0010000000080080, Z_Construct_UClass_UPrimitiveComponent_NoRegister());
+			UProperty* NewProp_OtherActor = new(EC_InternalUseOnlyConstructor, ReturnFunction, TEXT("OtherActor"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(CPP_PROPERTY_BASE(OtherActor, InteractActor_eventOnOverlapBegin_Parms), 0x0010000000000080, Z_Construct_UClass_AActor_NoRegister());
+			UProperty* NewProp_OverlappedComp = new(EC_InternalUseOnlyConstructor, ReturnFunction, TEXT("OverlappedComp"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(CPP_PROPERTY_BASE(OverlappedComp, InteractActor_eventOnOverlapBegin_Parms), 0x0010000000080080, Z_Construct_UClass_UPrimitiveComponent_NoRegister());
+			ReturnFunction->Bind();
+			ReturnFunction->StaticLink();
+#if WITH_METADATA
+			UMetaData* MetaData = ReturnFunction->GetOutermost()->GetMetaData();
+			MetaData->SetValue(ReturnFunction, TEXT("ModuleRelativePath"), TEXT("ItemsCpp/base/InteractActor.h"));
+			MetaData->SetValue(NewProp_SweepResult, TEXT("NativeConst"), TEXT(""));
+			MetaData->SetValue(NewProp_OtherComp, TEXT("EditInline"), TEXT("true"));
+			MetaData->SetValue(NewProp_OverlappedComp, TEXT("EditInline"), TEXT("true"));
+#endif
+		}
+		return ReturnFunction;
+	}
+	UClass* Z_Construct_UClass_AInteractActor_NoRegister()
+	{
+		return AInteractActor::StaticClass();
+	}
+	UClass* Z_Construct_UClass_AInteractActor()
+	{
+		static UClass* OuterClass = NULL;
+		if (!OuterClass)
+		{
+			Z_Construct_UClass_AActor();
+			Z_Construct_UPackage__Script_Latus();
+			OuterClass = AInteractActor::StaticClass();
+			if (!(OuterClass->ClassFlags & CLASS_Constructed))
+			{
+				UObjectForceRegistration(OuterClass);
+				OuterClass->ClassFlags |= 0x20900080;
+
+				OuterClass->LinkChild(Z_Construct_UFunction_AInteractActor_OnOverlapBegin());
+
+PRAGMA_DISABLE_DEPRECATION_WARNINGS
+				UProperty* NewProp_Parameters = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("Parameters"), RF_Public|RF_Transient|RF_MarkAsNative) UStructProperty(CPP_PROPERTY_BASE(Parameters, AInteractActor), 0x0010000000000001, Z_Construct_UScriptStruct_FItemParameters());
+				UProperty* NewProp_HelpText = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("HelpText"), RF_Public|RF_Transient|RF_MarkAsNative) UStrProperty(CPP_PROPERTY_BASE(HelpText, AInteractActor), 0x0010000000000001);
+				UProperty* NewProp_VisibleMesh = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("VisibleMesh"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(CPP_PROPERTY_BASE(VisibleMesh, AInteractActor), 0x00400000000b0009, Z_Construct_UClass_UStaticMeshComponent_NoRegister());
+				UProperty* NewProp_SphereCollision = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("SphereCollision"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(CPP_PROPERTY_BASE(SphereCollision, AInteractActor), 0x00400000000b0009, Z_Construct_UClass_USphereComponent_NoRegister());
+PRAGMA_ENABLE_DEPRECATION_WARNINGS
+				OuterClass->AddFunctionToFunctionMapWithOverriddenName(Z_Construct_UFunction_AInteractActor_OnOverlapBegin(), "OnOverlapBegin"); // 3566821069
+				static TCppClassTypeInfo<TCppClassTypeTraits<AInteractActor> > StaticCppClassTypeInfo;
+				OuterClass->SetCppTypeInfo(&StaticCppClassTypeInfo);
+				OuterClass->StaticLink();
+#if WITH_METADATA
+				UMetaData* MetaData = OuterClass->GetOutermost()->GetMetaData();
+				MetaData->SetValue(OuterClass, TEXT("IncludePath"), TEXT("ItemsCpp/base/InteractActor.h"));
+				MetaData->SetValue(OuterClass, TEXT("ModuleRelativePath"), TEXT("ItemsCpp/base/InteractActor.h"));
+				MetaData->SetValue(NewProp_Parameters, TEXT("Category"), TEXT("InteractActor"));
+				MetaData->SetValue(NewProp_Parameters, TEXT("ModuleRelativePath"), TEXT("ItemsCpp/base/InteractActor.h"));
+				MetaData->SetValue(NewProp_HelpText, TEXT("Category"), TEXT("InteractActor"));
+				MetaData->SetValue(NewProp_HelpText, TEXT("ModuleRelativePath"), TEXT("ItemsCpp/base/InteractActor.h"));
+				MetaData->SetValue(NewProp_HelpText, TEXT("ToolTip"), TEXT("\\brief Show, when  go closer player (Press E...)"));
+				MetaData->SetValue(NewProp_VisibleMesh, TEXT("Category"), TEXT("InteractActor"));
+				MetaData->SetValue(NewProp_VisibleMesh, TEXT("EditInline"), TEXT("true"));
+				MetaData->SetValue(NewProp_VisibleMesh, TEXT("ModuleRelativePath"), TEXT("ItemsCpp/base/InteractActor.h"));
+				MetaData->SetValue(NewProp_SphereCollision, TEXT("Category"), TEXT("InteractActor"));
+				MetaData->SetValue(NewProp_SphereCollision, TEXT("EditInline"), TEXT("true"));
+				MetaData->SetValue(NewProp_SphereCollision, TEXT("ModuleRelativePath"), TEXT("ItemsCpp/base/InteractActor.h"));
+#endif
+			}
+		}
+		check(OuterClass->GetClass());
+		return OuterClass;
+	}
+	IMPLEMENT_CLASS(AInteractActor, 862244440);
+	static FCompiledInDefer Z_CompiledInDefer_UClass_AInteractActor(Z_Construct_UClass_AInteractActor, &AInteractActor::StaticClass, TEXT("/Script/Latus"), TEXT("AInteractActor"), false, nullptr, nullptr, nullptr);
+	DEFINE_VTABLE_PTR_HELPER_CTOR(AInteractActor);
 	void ALatusCharacter::StaticRegisterNativesALatusCharacter()
 	{
 	}
@@ -333,8 +476,8 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 			ReturnPackage = CastChecked<UPackage>(StaticFindObjectFast(UPackage::StaticClass(), nullptr, FName(TEXT("/Script/Latus")), false, false));
 			ReturnPackage->SetPackageFlags(PKG_CompiledIn | 0x00000000);
 			FGuid Guid;
-			Guid.A = 0x94435A16;
-			Guid.B = 0x248308DD;
+			Guid.A = 0xF13534CD;
+			Guid.B = 0xA2F38BC5;
 			Guid.C = 0x00000000;
 			Guid.D = 0x00000000;
 			ReturnPackage->SetGuid(Guid);
