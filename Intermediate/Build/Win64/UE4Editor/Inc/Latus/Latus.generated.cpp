@@ -36,8 +36,11 @@ void EmptyLinkFunctionForGeneratedCode1Latus() {}
 
 	LATUS_API class UScriptStruct* Z_Construct_UScriptStruct_FItemParameters();
 	LATUS_API class UFunction* Z_Construct_UFunction_AInteractActor_OnOverlapBegin();
+	LATUS_API class UFunction* Z_Construct_UFunction_AInteractActor_OnOverlapEnd();
 	LATUS_API class UClass* Z_Construct_UClass_AInteractActor_NoRegister();
 	LATUS_API class UClass* Z_Construct_UClass_AInteractActor();
+	LATUS_API class UFunction* Z_Construct_UFunction_ALatusCharacter_ClearHelpText();
+	LATUS_API class UFunction* Z_Construct_UFunction_ALatusCharacter_GetHelpText();
 	LATUS_API class UFunction* Z_Construct_UFunction_ALatusCharacter_SetHelpText();
 	LATUS_API class UClass* Z_Construct_UClass_ALatusCharacter_NoRegister();
 	LATUS_API class UClass* Z_Construct_UClass_ALatusCharacter();
@@ -97,8 +100,9 @@ static struct FScriptStruct_Latus_StaticRegisterNativesFItemParameters
 		UClass* Class = AInteractActor::StaticClass();
 		static const TNameNativePtrPair<ANSICHAR> AnsiFuncs[] = {
 			{ "OnOverlapBegin", (Native)&AInteractActor::execOnOverlapBegin },
+			{ "OnOverlapEnd", (Native)&AInteractActor::execOnOverlapEnd },
 		};
-		FNativeFunctionRegistrar::RegisterFunctions(Class, AnsiFuncs, 1);
+		FNativeFunctionRegistrar::RegisterFunctions(Class, AnsiFuncs, 2);
 	}
 	UFunction* Z_Construct_UFunction_AInteractActor_OnOverlapBegin()
 	{
@@ -135,6 +139,35 @@ static struct FScriptStruct_Latus_StaticRegisterNativesFItemParameters
 		}
 		return ReturnFunction;
 	}
+	UFunction* Z_Construct_UFunction_AInteractActor_OnOverlapEnd()
+	{
+		struct InteractActor_eventOnOverlapEnd_Parms
+		{
+			UPrimitiveComponent* OverlappedComp;
+			AActor* OtherActor;
+			UPrimitiveComponent* OtherComp;
+			int32 OtherBodyIndex;
+		};
+		UObject* Outer=Z_Construct_UClass_AInteractActor();
+		static UFunction* ReturnFunction = NULL;
+		if (!ReturnFunction)
+		{
+			ReturnFunction = new(EC_InternalUseOnlyConstructor, Outer, TEXT("OnOverlapEnd"), RF_Public|RF_Transient|RF_MarkAsNative) UFunction(FObjectInitializer(), NULL, 0x00020401, 65535, sizeof(InteractActor_eventOnOverlapEnd_Parms));
+			UProperty* NewProp_OtherBodyIndex = new(EC_InternalUseOnlyConstructor, ReturnFunction, TEXT("OtherBodyIndex"), RF_Public|RF_Transient|RF_MarkAsNative) UIntProperty(CPP_PROPERTY_BASE(OtherBodyIndex, InteractActor_eventOnOverlapEnd_Parms), 0x0010000000000080);
+			UProperty* NewProp_OtherComp = new(EC_InternalUseOnlyConstructor, ReturnFunction, TEXT("OtherComp"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(CPP_PROPERTY_BASE(OtherComp, InteractActor_eventOnOverlapEnd_Parms), 0x0010000000080080, Z_Construct_UClass_UPrimitiveComponent_NoRegister());
+			UProperty* NewProp_OtherActor = new(EC_InternalUseOnlyConstructor, ReturnFunction, TEXT("OtherActor"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(CPP_PROPERTY_BASE(OtherActor, InteractActor_eventOnOverlapEnd_Parms), 0x0010000000000080, Z_Construct_UClass_AActor_NoRegister());
+			UProperty* NewProp_OverlappedComp = new(EC_InternalUseOnlyConstructor, ReturnFunction, TEXT("OverlappedComp"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(CPP_PROPERTY_BASE(OverlappedComp, InteractActor_eventOnOverlapEnd_Parms), 0x0010000000080080, Z_Construct_UClass_UPrimitiveComponent_NoRegister());
+			ReturnFunction->Bind();
+			ReturnFunction->StaticLink();
+#if WITH_METADATA
+			UMetaData* MetaData = ReturnFunction->GetOutermost()->GetMetaData();
+			MetaData->SetValue(ReturnFunction, TEXT("ModuleRelativePath"), TEXT("ItemsCpp/base/InteractActor.h"));
+			MetaData->SetValue(NewProp_OtherComp, TEXT("EditInline"), TEXT("true"));
+			MetaData->SetValue(NewProp_OverlappedComp, TEXT("EditInline"), TEXT("true"));
+#endif
+		}
+		return ReturnFunction;
+	}
 	UClass* Z_Construct_UClass_AInteractActor_NoRegister()
 	{
 		return AInteractActor::StaticClass();
@@ -153,6 +186,7 @@ static struct FScriptStruct_Latus_StaticRegisterNativesFItemParameters
 				OuterClass->ClassFlags |= 0x20900080;
 
 				OuterClass->LinkChild(Z_Construct_UFunction_AInteractActor_OnOverlapBegin());
+				OuterClass->LinkChild(Z_Construct_UFunction_AInteractActor_OnOverlapEnd());
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 				UProperty* NewProp_Parameters = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("Parameters"), RF_Public|RF_Transient|RF_MarkAsNative) UStructProperty(CPP_PROPERTY_BASE(Parameters, AInteractActor), 0x0010000000000001, Z_Construct_UScriptStruct_FItemParameters());
@@ -160,6 +194,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 				UProperty* NewProp_SphereCollision = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("SphereCollision"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(CPP_PROPERTY_BASE(SphereCollision, AInteractActor), 0x00400000000b0009, Z_Construct_UClass_USphereComponent_NoRegister());
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 				OuterClass->AddFunctionToFunctionMapWithOverriddenName(Z_Construct_UFunction_AInteractActor_OnOverlapBegin(), "OnOverlapBegin"); // 3566821069
+				OuterClass->AddFunctionToFunctionMapWithOverriddenName(Z_Construct_UFunction_AInteractActor_OnOverlapEnd(), "OnOverlapEnd"); // 407719758
 				static TCppClassTypeInfo<TCppClassTypeTraits<AInteractActor> > StaticCppClassTypeInfo;
 				OuterClass->SetCppTypeInfo(&StaticCppClassTypeInfo);
 				OuterClass->StaticLink();
@@ -182,16 +217,55 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 		check(OuterClass->GetClass());
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AInteractActor, 2430187631);
+	IMPLEMENT_CLASS(AInteractActor, 2828045163);
 	static FCompiledInDefer Z_CompiledInDefer_UClass_AInteractActor(Z_Construct_UClass_AInteractActor, &AInteractActor::StaticClass, TEXT("/Script/Latus"), TEXT("AInteractActor"), false, nullptr, nullptr, nullptr);
 	DEFINE_VTABLE_PTR_HELPER_CTOR(AInteractActor);
 	void ALatusCharacter::StaticRegisterNativesALatusCharacter()
 	{
 		UClass* Class = ALatusCharacter::StaticClass();
 		static const TNameNativePtrPair<ANSICHAR> AnsiFuncs[] = {
+			{ "ClearHelpText", (Native)&ALatusCharacter::execClearHelpText },
+			{ "GetHelpText", (Native)&ALatusCharacter::execGetHelpText },
 			{ "SetHelpText", (Native)&ALatusCharacter::execSetHelpText },
 		};
-		FNativeFunctionRegistrar::RegisterFunctions(Class, AnsiFuncs, 1);
+		FNativeFunctionRegistrar::RegisterFunctions(Class, AnsiFuncs, 3);
+	}
+	UFunction* Z_Construct_UFunction_ALatusCharacter_ClearHelpText()
+	{
+		UObject* Outer=Z_Construct_UClass_ALatusCharacter();
+		static UFunction* ReturnFunction = NULL;
+		if (!ReturnFunction)
+		{
+			ReturnFunction = new(EC_InternalUseOnlyConstructor, Outer, TEXT("ClearHelpText"), RF_Public|RF_Transient|RF_MarkAsNative) UFunction(FObjectInitializer(), NULL, 0x00020401, 65535);
+			ReturnFunction->Bind();
+			ReturnFunction->StaticLink();
+#if WITH_METADATA
+			UMetaData* MetaData = ReturnFunction->GetOutermost()->GetMetaData();
+			MetaData->SetValue(ReturnFunction, TEXT("ModuleRelativePath"), TEXT("LatusCharacter.h"));
+#endif
+		}
+		return ReturnFunction;
+	}
+	UFunction* Z_Construct_UFunction_ALatusCharacter_GetHelpText()
+	{
+		struct LatusCharacter_eventGetHelpText_Parms
+		{
+			FString ReturnValue;
+		};
+		UObject* Outer=Z_Construct_UClass_ALatusCharacter();
+		static UFunction* ReturnFunction = NULL;
+		if (!ReturnFunction)
+		{
+			ReturnFunction = new(EC_InternalUseOnlyConstructor, Outer, TEXT("GetHelpText"), RF_Public|RF_Transient|RF_MarkAsNative) UFunction(FObjectInitializer(), NULL, 0x54020401, 65535, sizeof(LatusCharacter_eventGetHelpText_Parms));
+			UProperty* NewProp_ReturnValue = new(EC_InternalUseOnlyConstructor, ReturnFunction, TEXT("ReturnValue"), RF_Public|RF_Transient|RF_MarkAsNative) UStrProperty(CPP_PROPERTY_BASE(ReturnValue, LatusCharacter_eventGetHelpText_Parms), 0x0010000000000580);
+			ReturnFunction->Bind();
+			ReturnFunction->StaticLink();
+#if WITH_METADATA
+			UMetaData* MetaData = ReturnFunction->GetOutermost()->GetMetaData();
+			MetaData->SetValue(ReturnFunction, TEXT("ModuleRelativePath"), TEXT("LatusCharacter.h"));
+#endif
+		}
+		return ReturnFunction;
 	}
 	UFunction* Z_Construct_UFunction_ALatusCharacter_SetHelpText()
 	{
@@ -231,6 +305,8 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 				UObjectForceRegistration(OuterClass);
 				OuterClass->ClassFlags |= 0x20800080;
 
+				OuterClass->LinkChild(Z_Construct_UFunction_ALatusCharacter_ClearHelpText());
+				OuterClass->LinkChild(Z_Construct_UFunction_ALatusCharacter_GetHelpText());
 				OuterClass->LinkChild(Z_Construct_UFunction_ALatusCharacter_SetHelpText());
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
@@ -251,6 +327,8 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 				UProperty* NewProp_FP_Gun = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("FP_Gun"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(CPP_PROPERTY_BASE(FP_Gun, ALatusCharacter), 0x00400000000b0009, Z_Construct_UClass_USkeletalMeshComponent_NoRegister());
 				UProperty* NewProp_Mesh1P = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("Mesh1P"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(CPP_PROPERTY_BASE(Mesh1P, ALatusCharacter), 0x00400000000b0009, Z_Construct_UClass_USkeletalMeshComponent_NoRegister());
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
+				OuterClass->AddFunctionToFunctionMapWithOverriddenName(Z_Construct_UFunction_ALatusCharacter_ClearHelpText(), "ClearHelpText"); // 4083515530
+				OuterClass->AddFunctionToFunctionMapWithOverriddenName(Z_Construct_UFunction_ALatusCharacter_GetHelpText(), "GetHelpText"); // 2201893275
 				OuterClass->AddFunctionToFunctionMapWithOverriddenName(Z_Construct_UFunction_ALatusCharacter_SetHelpText(), "SetHelpText"); // 29058617
 				OuterClass->ClassConfigName = FName(TEXT("Game"));
 				static TCppClassTypeInfo<TCppClassTypeTraits<ALatusCharacter> > StaticCppClassTypeInfo;
@@ -323,7 +401,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 		check(OuterClass->GetClass());
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ALatusCharacter, 4013827355);
+	IMPLEMENT_CLASS(ALatusCharacter, 4176767443);
 	static FCompiledInDefer Z_CompiledInDefer_UClass_ALatusCharacter(Z_Construct_UClass_ALatusCharacter, &ALatusCharacter::StaticClass, TEXT("/Script/Latus"), TEXT("ALatusCharacter"), false, nullptr, nullptr, nullptr);
 	DEFINE_VTABLE_PTR_HELPER_CTOR(ALatusCharacter);
 	void ALatusGameMode::StaticRegisterNativesALatusGameMode()
@@ -550,8 +628,8 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 			ReturnPackage = CastChecked<UPackage>(StaticFindObjectFast(UPackage::StaticClass(), nullptr, FName(TEXT("/Script/Latus")), false, false));
 			ReturnPackage->SetPackageFlags(PKG_CompiledIn | 0x00000000);
 			FGuid Guid;
-			Guid.A = 0x5B8E6507;
-			Guid.B = 0x9008EBA2;
+			Guid.A = 0x5742A5B0;
+			Guid.B = 0xC631B9B2;
 			Guid.C = 0x00000000;
 			Guid.D = 0x00000000;
 			ReturnPackage->SetGuid(Guid);

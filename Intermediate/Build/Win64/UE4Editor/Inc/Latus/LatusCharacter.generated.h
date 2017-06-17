@@ -15,6 +15,22 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 
 #define Latus_Source_Latus_LatusCharacter_h_14_RPC_WRAPPERS \
  \
+	DECLARE_FUNCTION(execGetHelpText) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		*(FString*)Z_Param__Result=this->GetHelpText(); \
+		P_NATIVE_END; \
+	} \
+ \
+	DECLARE_FUNCTION(execClearHelpText) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		this->ClearHelpText(); \
+		P_NATIVE_END; \
+	} \
+ \
 	DECLARE_FUNCTION(execSetHelpText) \
 	{ \
 		P_GET_PROPERTY(UStrProperty,Z_Param_text); \
@@ -26,6 +42,22 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 
 
 #define Latus_Source_Latus_LatusCharacter_h_14_RPC_WRAPPERS_NO_PURE_DECLS \
+ \
+	DECLARE_FUNCTION(execGetHelpText) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		*(FString*)Z_Param__Result=this->GetHelpText(); \
+		P_NATIVE_END; \
+	} \
+ \
+	DECLARE_FUNCTION(execClearHelpText) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		this->ClearHelpText(); \
+		P_NATIVE_END; \
+	} \
  \
 	DECLARE_FUNCTION(execSetHelpText) \
 	{ \

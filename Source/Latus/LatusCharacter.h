@@ -148,6 +148,10 @@ public:
 	UFUNCTION()
 		void SetHelpText(FString text);
 
+	UFUNCTION()
+		void ClearHelpText();
+
+	UFUNCTION(BlueprintCallable)
 	/** получение подсказки*/
 	FORCEINLINE FString GetHelpText() const { return HelpText; }
 

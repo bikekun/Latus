@@ -18,6 +18,8 @@ AInteractActor::AInteractActor()
 	SphereCollision->SetupAttachment(RootComponent);
 	SphereCollision->bGenerateOverlapEvents = true;
 	SphereCollision->OnComponentBeginOverlap.AddDynamic(this, &AInteractActor::OnOverlapBegin);
+	SphereCollision->OnComponentEndOverlap.AddDynamic(this, &AInteractActor::OnOverlapEnd);
+
 
 
 	////////////////////////////////////
@@ -47,6 +49,16 @@ void AInteractActor::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor*
 	}
 
 	
+}
+
+void AInteractActor::OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
+{
+	ALatusCharacter* Player = Cast<ALatusCharacter>(OtherActor);
+
+	if (Player != nullptr)
+	{
+		Player->ClearHelpText();
+	}
 }
 
 // Called every frame

@@ -143,6 +143,11 @@ void ALatusCharacter::SetHelpText(FString text)
 	HelpText = FString::Printf(TEXT("Нажмите E, что бы поднять: %s"), *text);
 }
 
+void ALatusCharacter::ClearHelpText()
+{
+	HelpText = TEXT("");
+}
+
 void ALatusCharacter::OnFire()
 {
 	// try and fire a projectile
