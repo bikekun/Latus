@@ -13,8 +13,30 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define LATUS_LatusCharacter_generated_h
 
-#define Latus_Source_Latus_LatusCharacter_h_14_RPC_WRAPPERS
-#define Latus_Source_Latus_LatusCharacter_h_14_RPC_WRAPPERS_NO_PURE_DECLS
+#define Latus_Source_Latus_LatusCharacter_h_14_RPC_WRAPPERS \
+ \
+	DECLARE_FUNCTION(execSetHelpText) \
+	{ \
+		P_GET_PROPERTY(UStrProperty,Z_Param_text); \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		this->SetHelpText(Z_Param_text); \
+		P_NATIVE_END; \
+	}
+
+
+#define Latus_Source_Latus_LatusCharacter_h_14_RPC_WRAPPERS_NO_PURE_DECLS \
+ \
+	DECLARE_FUNCTION(execSetHelpText) \
+	{ \
+		P_GET_PROPERTY(UStrProperty,Z_Param_text); \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		this->SetHelpText(Z_Param_text); \
+		P_NATIVE_END; \
+	}
+
+
 #define Latus_Source_Latus_LatusCharacter_h_14_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesALatusCharacter(); \

@@ -30,6 +30,7 @@ void EmptyLinkFunctionForGeneratedCode1Latus() {}
 	ENGINE_API class UClass* Z_Construct_UClass_USceneComponent_NoRegister();
 	ENGINE_API class UClass* Z_Construct_UClass_USkeletalMeshComponent_NoRegister();
 	ENGINE_API class UClass* Z_Construct_UClass_AGameModeBase();
+	UMG_API class UClass* Z_Construct_UClass_UUserWidget_NoRegister();
 	ENGINE_API class UClass* Z_Construct_UClass_AHUD();
 	ENGINE_API class UClass* Z_Construct_UClass_UProjectileMovementComponent_NoRegister();
 
@@ -37,8 +38,10 @@ void EmptyLinkFunctionForGeneratedCode1Latus() {}
 	LATUS_API class UFunction* Z_Construct_UFunction_AInteractActor_OnOverlapBegin();
 	LATUS_API class UClass* Z_Construct_UClass_AInteractActor_NoRegister();
 	LATUS_API class UClass* Z_Construct_UClass_AInteractActor();
+	LATUS_API class UFunction* Z_Construct_UFunction_ALatusCharacter_SetHelpText();
 	LATUS_API class UClass* Z_Construct_UClass_ALatusCharacter_NoRegister();
 	LATUS_API class UClass* Z_Construct_UClass_ALatusCharacter();
+	LATUS_API class UFunction* Z_Construct_UFunction_ALatusGameMode_ChangeHUDState();
 	LATUS_API class UClass* Z_Construct_UClass_ALatusGameMode_NoRegister();
 	LATUS_API class UClass* Z_Construct_UClass_ALatusGameMode();
 	LATUS_API class UClass* Z_Construct_UClass_ALatusHUD_NoRegister();
@@ -153,7 +156,6 @@ static struct FScriptStruct_Latus_StaticRegisterNativesFItemParameters
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 				UProperty* NewProp_Parameters = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("Parameters"), RF_Public|RF_Transient|RF_MarkAsNative) UStructProperty(CPP_PROPERTY_BASE(Parameters, AInteractActor), 0x0010000000000001, Z_Construct_UScriptStruct_FItemParameters());
-				UProperty* NewProp_HelpText = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("HelpText"), RF_Public|RF_Transient|RF_MarkAsNative) UStrProperty(CPP_PROPERTY_BASE(HelpText, AInteractActor), 0x0010000000000001);
 				UProperty* NewProp_VisibleMesh = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("VisibleMesh"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(CPP_PROPERTY_BASE(VisibleMesh, AInteractActor), 0x00400000000b0009, Z_Construct_UClass_UStaticMeshComponent_NoRegister());
 				UProperty* NewProp_SphereCollision = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("SphereCollision"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(CPP_PROPERTY_BASE(SphereCollision, AInteractActor), 0x00400000000b0009, Z_Construct_UClass_USphereComponent_NoRegister());
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
@@ -167,9 +169,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 				MetaData->SetValue(OuterClass, TEXT("ModuleRelativePath"), TEXT("ItemsCpp/base/InteractActor.h"));
 				MetaData->SetValue(NewProp_Parameters, TEXT("Category"), TEXT("InteractActor"));
 				MetaData->SetValue(NewProp_Parameters, TEXT("ModuleRelativePath"), TEXT("ItemsCpp/base/InteractActor.h"));
-				MetaData->SetValue(NewProp_HelpText, TEXT("Category"), TEXT("InteractActor"));
-				MetaData->SetValue(NewProp_HelpText, TEXT("ModuleRelativePath"), TEXT("ItemsCpp/base/InteractActor.h"));
-				MetaData->SetValue(NewProp_HelpText, TEXT("ToolTip"), TEXT("\\brief Show, when  go closer player (Press E...)"));
+				MetaData->SetValue(NewProp_Parameters, TEXT("ToolTip"), TEXT("virtual void Tick(float DeltaTime) override;"));
 				MetaData->SetValue(NewProp_VisibleMesh, TEXT("Category"), TEXT("InteractActor"));
 				MetaData->SetValue(NewProp_VisibleMesh, TEXT("EditInline"), TEXT("true"));
 				MetaData->SetValue(NewProp_VisibleMesh, TEXT("ModuleRelativePath"), TEXT("ItemsCpp/base/InteractActor.h"));
@@ -182,11 +182,37 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 		check(OuterClass->GetClass());
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AInteractActor, 862244440);
+	IMPLEMENT_CLASS(AInteractActor, 2430187631);
 	static FCompiledInDefer Z_CompiledInDefer_UClass_AInteractActor(Z_Construct_UClass_AInteractActor, &AInteractActor::StaticClass, TEXT("/Script/Latus"), TEXT("AInteractActor"), false, nullptr, nullptr, nullptr);
 	DEFINE_VTABLE_PTR_HELPER_CTOR(AInteractActor);
 	void ALatusCharacter::StaticRegisterNativesALatusCharacter()
 	{
+		UClass* Class = ALatusCharacter::StaticClass();
+		static const TNameNativePtrPair<ANSICHAR> AnsiFuncs[] = {
+			{ "SetHelpText", (Native)&ALatusCharacter::execSetHelpText },
+		};
+		FNativeFunctionRegistrar::RegisterFunctions(Class, AnsiFuncs, 1);
+	}
+	UFunction* Z_Construct_UFunction_ALatusCharacter_SetHelpText()
+	{
+		struct LatusCharacter_eventSetHelpText_Parms
+		{
+			FString text;
+		};
+		UObject* Outer=Z_Construct_UClass_ALatusCharacter();
+		static UFunction* ReturnFunction = NULL;
+		if (!ReturnFunction)
+		{
+			ReturnFunction = new(EC_InternalUseOnlyConstructor, Outer, TEXT("SetHelpText"), RF_Public|RF_Transient|RF_MarkAsNative) UFunction(FObjectInitializer(), NULL, 0x00020401, 65535, sizeof(LatusCharacter_eventSetHelpText_Parms));
+			UProperty* NewProp_text = new(EC_InternalUseOnlyConstructor, ReturnFunction, TEXT("text"), RF_Public|RF_Transient|RF_MarkAsNative) UStrProperty(CPP_PROPERTY_BASE(text, LatusCharacter_eventSetHelpText_Parms), 0x0010000000000080);
+			ReturnFunction->Bind();
+			ReturnFunction->StaticLink();
+#if WITH_METADATA
+			UMetaData* MetaData = ReturnFunction->GetOutermost()->GetMetaData();
+			MetaData->SetValue(ReturnFunction, TEXT("ModuleRelativePath"), TEXT("LatusCharacter.h"));
+#endif
+		}
+		return ReturnFunction;
 	}
 	UClass* Z_Construct_UClass_ALatusCharacter_NoRegister()
 	{
@@ -205,6 +231,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 				UObjectForceRegistration(OuterClass);
 				OuterClass->ClassFlags |= 0x20800080;
 
+				OuterClass->LinkChild(Z_Construct_UFunction_ALatusCharacter_SetHelpText());
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 				CPP_BOOL_PROPERTY_BITMASK_STRUCT(bUsingMotionControllers, ALatusCharacter, uint8);
@@ -224,6 +251,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 				UProperty* NewProp_FP_Gun = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("FP_Gun"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(CPP_PROPERTY_BASE(FP_Gun, ALatusCharacter), 0x00400000000b0009, Z_Construct_UClass_USkeletalMeshComponent_NoRegister());
 				UProperty* NewProp_Mesh1P = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("Mesh1P"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(CPP_PROPERTY_BASE(Mesh1P, ALatusCharacter), 0x00400000000b0009, Z_Construct_UClass_USkeletalMeshComponent_NoRegister());
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
+				OuterClass->AddFunctionToFunctionMapWithOverriddenName(Z_Construct_UFunction_ALatusCharacter_SetHelpText(), "SetHelpText"); // 29058617
 				OuterClass->ClassConfigName = FName(TEXT("Game"));
 				static TCppClassTypeInfo<TCppClassTypeTraits<ALatusCharacter> > StaticCppClassTypeInfo;
 				OuterClass->SetCppTypeInfo(&StaticCppClassTypeInfo);
@@ -295,11 +323,38 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 		check(OuterClass->GetClass());
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ALatusCharacter, 2800938015);
+	IMPLEMENT_CLASS(ALatusCharacter, 4013827355);
 	static FCompiledInDefer Z_CompiledInDefer_UClass_ALatusCharacter(Z_Construct_UClass_ALatusCharacter, &ALatusCharacter::StaticClass, TEXT("/Script/Latus"), TEXT("ALatusCharacter"), false, nullptr, nullptr, nullptr);
 	DEFINE_VTABLE_PTR_HELPER_CTOR(ALatusCharacter);
 	void ALatusGameMode::StaticRegisterNativesALatusGameMode()
 	{
+		UClass* Class = ALatusGameMode::StaticClass();
+		static const TNameNativePtrPair<ANSICHAR> AnsiFuncs[] = {
+			{ "ChangeHUDState", (Native)&ALatusGameMode::execChangeHUDState },
+		};
+		FNativeFunctionRegistrar::RegisterFunctions(Class, AnsiFuncs, 1);
+	}
+	UFunction* Z_Construct_UFunction_ALatusGameMode_ChangeHUDState()
+	{
+		struct LatusGameMode_eventChangeHUDState_Parms
+		{
+			uint8 NewState;
+		};
+		UObject* Outer=Z_Construct_UClass_ALatusGameMode();
+		static UFunction* ReturnFunction = NULL;
+		if (!ReturnFunction)
+		{
+			ReturnFunction = new(EC_InternalUseOnlyConstructor, Outer, TEXT("ChangeHUDState"), RF_Public|RF_Transient|RF_MarkAsNative) UFunction(FObjectInitializer(), NULL, 0x04020401, 65535, sizeof(LatusGameMode_eventChangeHUDState_Parms));
+			UProperty* NewProp_NewState = new(EC_InternalUseOnlyConstructor, ReturnFunction, TEXT("NewState"), RF_Public|RF_Transient|RF_MarkAsNative) UByteProperty(CPP_PROPERTY_BASE(NewState, LatusGameMode_eventChangeHUDState_Parms), 0x0010000000000080);
+			ReturnFunction->Bind();
+			ReturnFunction->StaticLink();
+#if WITH_METADATA
+			UMetaData* MetaData = ReturnFunction->GetOutermost()->GetMetaData();
+			MetaData->SetValue(ReturnFunction, TEXT("Category"), TEXT("HUD"));
+			MetaData->SetValue(ReturnFunction, TEXT("ModuleRelativePath"), TEXT("LatusGameMode.h"));
+#endif
+		}
+		return ReturnFunction;
 	}
 	UClass* Z_Construct_UClass_ALatusGameMode_NoRegister()
 	{
@@ -318,7 +373,16 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 				UObjectForceRegistration(OuterClass);
 				OuterClass->ClassFlags |= 0x20880288;
 
+				OuterClass->LinkChild(Z_Construct_UFunction_ALatusGameMode_ChangeHUDState());
 
+PRAGMA_DISABLE_DEPRECATION_WARNINGS
+				UProperty* NewProp_CurrentWidget = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("CurrentWidget"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(CPP_PROPERTY_BASE(CurrentWidget, ALatusGameMode), 0x0020080000080008, Z_Construct_UClass_UUserWidget_NoRegister());
+				UProperty* NewProp_ShopWeaponGeneralHUDClass = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("ShopWeaponGeneralHUDClass"), RF_Public|RF_Transient|RF_MarkAsNative) UClassProperty(CPP_PROPERTY_BASE(ShopWeaponGeneralHUDClass, ALatusGameMode), 0x0024080000010005, Z_Construct_UClass_UUserWidget_NoRegister(), UClass::StaticClass());
+				UProperty* NewProp_ShopGeneralHUDClass = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("ShopGeneralHUDClass"), RF_Public|RF_Transient|RF_MarkAsNative) UClassProperty(CPP_PROPERTY_BASE(ShopGeneralHUDClass, ALatusGameMode), 0x0024080000010005, Z_Construct_UClass_UUserWidget_NoRegister(), UClass::StaticClass());
+				UProperty* NewProp_InventoryHUDClass = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("InventoryHUDClass"), RF_Public|RF_Transient|RF_MarkAsNative) UClassProperty(CPP_PROPERTY_BASE(InventoryHUDClass, ALatusGameMode), 0x0024080000010005, Z_Construct_UClass_UUserWidget_NoRegister(), UClass::StaticClass());
+				UProperty* NewProp_IngameHUDClass = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("IngameHUDClass"), RF_Public|RF_Transient|RF_MarkAsNative) UClassProperty(CPP_PROPERTY_BASE(IngameHUDClass, ALatusGameMode), 0x0024080000010005, Z_Construct_UClass_UUserWidget_NoRegister(), UClass::StaticClass());
+PRAGMA_ENABLE_DEPRECATION_WARNINGS
+				OuterClass->AddFunctionToFunctionMapWithOverriddenName(Z_Construct_UFunction_ALatusGameMode_ChangeHUDState(), "ChangeHUDState"); // 3837170117
 				static TCppClassTypeInfo<TCppClassTypeTraits<ALatusGameMode> > StaticCppClassTypeInfo;
 				OuterClass->SetCppTypeInfo(&StaticCppClassTypeInfo);
 				OuterClass->StaticLink();
@@ -328,13 +392,23 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 				MetaData->SetValue(OuterClass, TEXT("IncludePath"), TEXT("LatusGameMode.h"));
 				MetaData->SetValue(OuterClass, TEXT("ModuleRelativePath"), TEXT("LatusGameMode.h"));
 				MetaData->SetValue(OuterClass, TEXT("ShowCategories"), TEXT("Input|MouseInput Input|TouchInput"));
+				MetaData->SetValue(NewProp_CurrentWidget, TEXT("EditInline"), TEXT("true"));
+				MetaData->SetValue(NewProp_CurrentWidget, TEXT("ModuleRelativePath"), TEXT("LatusGameMode.h"));
+				MetaData->SetValue(NewProp_ShopWeaponGeneralHUDClass, TEXT("Category"), TEXT("HUD"));
+				MetaData->SetValue(NewProp_ShopWeaponGeneralHUDClass, TEXT("ModuleRelativePath"), TEXT("LatusGameMode.h"));
+				MetaData->SetValue(NewProp_ShopGeneralHUDClass, TEXT("Category"), TEXT("HUD"));
+				MetaData->SetValue(NewProp_ShopGeneralHUDClass, TEXT("ModuleRelativePath"), TEXT("LatusGameMode.h"));
+				MetaData->SetValue(NewProp_InventoryHUDClass, TEXT("Category"), TEXT("HUD"));
+				MetaData->SetValue(NewProp_InventoryHUDClass, TEXT("ModuleRelativePath"), TEXT("LatusGameMode.h"));
+				MetaData->SetValue(NewProp_IngameHUDClass, TEXT("Category"), TEXT("HUD"));
+				MetaData->SetValue(NewProp_IngameHUDClass, TEXT("ModuleRelativePath"), TEXT("LatusGameMode.h"));
 #endif
 			}
 		}
 		check(OuterClass->GetClass());
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ALatusGameMode, 1423431810);
+	IMPLEMENT_CLASS(ALatusGameMode, 3549966140);
 	static FCompiledInDefer Z_CompiledInDefer_UClass_ALatusGameMode(Z_Construct_UClass_ALatusGameMode, &ALatusGameMode::StaticClass, TEXT("/Script/Latus"), TEXT("ALatusGameMode"), false, nullptr, nullptr, nullptr);
 	DEFINE_VTABLE_PTR_HELPER_CTOR(ALatusGameMode);
 	void ALatusHUD::StaticRegisterNativesALatusHUD()
@@ -476,8 +550,8 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 			ReturnPackage = CastChecked<UPackage>(StaticFindObjectFast(UPackage::StaticClass(), nullptr, FName(TEXT("/Script/Latus")), false, false));
 			ReturnPackage->SetPackageFlags(PKG_CompiledIn | 0x00000000);
 			FGuid Guid;
-			Guid.A = 0xF13534CD;
-			Guid.B = 0xA2F38BC5;
+			Guid.A = 0x5B8E6507;
+			Guid.B = 0x9008EBA2;
 			Guid.C = 0x00000000;
 			Guid.D = 0x00000000;
 			ReturnPackage->SetGuid(Guid);

@@ -13,8 +13,30 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define LATUS_LatusGameMode_generated_h
 
-#define Latus_Source_Latus_LatusGameMode_h_12_RPC_WRAPPERS
-#define Latus_Source_Latus_LatusGameMode_h_12_RPC_WRAPPERS_NO_PURE_DECLS
+#define Latus_Source_Latus_LatusGameMode_h_12_RPC_WRAPPERS \
+ \
+	DECLARE_FUNCTION(execChangeHUDState) \
+	{ \
+		P_GET_PROPERTY(UByteProperty,Z_Param_NewState); \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		this->ChangeHUDState(Z_Param_NewState); \
+		P_NATIVE_END; \
+	}
+
+
+#define Latus_Source_Latus_LatusGameMode_h_12_RPC_WRAPPERS_NO_PURE_DECLS \
+ \
+	DECLARE_FUNCTION(execChangeHUDState) \
+	{ \
+		P_GET_PROPERTY(UByteProperty,Z_Param_NewState); \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		this->ChangeHUDState(Z_Param_NewState); \
+		P_NATIVE_END; \
+	}
+
+
 #define Latus_Source_Latus_LatusGameMode_h_12_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesALatusGameMode(); \
@@ -59,7 +81,14 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(ALatusGameMode); \
 	DEFINE_DEFAULT_CONSTRUCTOR_CALL(ALatusGameMode)
 
 
-#define Latus_Source_Latus_LatusGameMode_h_12_PRIVATE_PROPERTY_OFFSET
+#define Latus_Source_Latus_LatusGameMode_h_12_PRIVATE_PROPERTY_OFFSET \
+	FORCEINLINE static uint32 __PPO__IngameHUDClass() { return STRUCT_OFFSET(ALatusGameMode, IngameHUDClass); } \
+	FORCEINLINE static uint32 __PPO__InventoryHUDClass() { return STRUCT_OFFSET(ALatusGameMode, InventoryHUDClass); } \
+	FORCEINLINE static uint32 __PPO__ShopGeneralHUDClass() { return STRUCT_OFFSET(ALatusGameMode, ShopGeneralHUDClass); } \
+	FORCEINLINE static uint32 __PPO__ShopWeaponGeneralHUDClass() { return STRUCT_OFFSET(ALatusGameMode, ShopWeaponGeneralHUDClass); } \
+	FORCEINLINE static uint32 __PPO__CurrentWidget() { return STRUCT_OFFSET(ALatusGameMode, CurrentWidget); }
+
+
 #define Latus_Source_Latus_LatusGameMode_h_9_PROLOG
 #define Latus_Source_Latus_LatusGameMode_h_12_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \

@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "InteractActor.h"
+#include "../../LatusCharacter.h"
 
 
 // Sets default values
@@ -22,7 +23,7 @@ AInteractActor::AInteractActor()
 	////////////////////////////////////
 	
 	Parameters.ItemName = TEXT("Введите имя");
-	HelpText = TEXT("Это автоматически заполняемое поле");
+	
 
 }
 
@@ -31,17 +32,21 @@ void AInteractActor::BeginPlay()
 {
 	Super::BeginPlay();
 
-	UpdateHelpText();
+
 }
 
-void AInteractActor::UpdateHelpText()
-{
-	HelpText = FString::Printf(TEXT("Нажмите E, что бы поднять: %s"), *Parameters.ItemName);
-}
 
 void AInteractActor::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	GLog->Log(FString::Printf(TEXT("%s"), *HelpText) );
+	ALatusCharacter* Player = Cast<ALatusCharacter>(OtherActor);
+
+	if (Player != nullptr)
+	{
+		Player->SetHelpText(Parameters.ItemName);
+		GLog->Log(FString::Printf(TEXT("%s"), *Player->GetHelpText() ));
+	}
+
+	
 }
 
 // Called every frame

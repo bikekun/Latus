@@ -80,8 +80,12 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
 	uint32 bUsingMotionControllers : 1;
 
+
+	
+
 protected:
 	
+
 	/** Fires a projectile. */
 	void OnFire();
 
@@ -132,7 +136,21 @@ protected:
 	 */
 	bool EnableTouchscreenMovement(UInputComponent* InputComponent);
 
+private:
+		/**
+		* \brief Show, when player approach  (Press E...)
+		*/
+		FString HelpText;
+
 public:
+	
+	/** Изменение всплывающей подсказки*/
+	UFUNCTION()
+		void SetHelpText(FString text);
+
+	/** получение подсказки*/
+	FORCEINLINE FString GetHelpText() const { return HelpText; }
+
 	/** Returns Mesh1P subobject **/
 	FORCEINLINE class USkeletalMeshComponent* GetMesh1P() const { return Mesh1P; }
 	/** Returns FirstPersonCameraComponent subobject **/

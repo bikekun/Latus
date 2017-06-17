@@ -81,6 +81,8 @@ ALatusCharacter::ALatusCharacter()
 
 	// Uncomment the following line to turn motion controllers on by default:
 	//bUsingMotionControllers = true;
+
+	HelpText = "";
 }
 
 void ALatusCharacter::BeginPlay()
@@ -133,6 +135,12 @@ void ALatusCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerInp
 	PlayerInputComponent->BindAxis("TurnRate", this, &ALatusCharacter::TurnAtRate);
 	PlayerInputComponent->BindAxis("LookUp", this, &APawn::AddControllerPitchInput);
 	PlayerInputComponent->BindAxis("LookUpRate", this, &ALatusCharacter::LookUpAtRate);
+}
+
+
+void ALatusCharacter::SetHelpText(FString text)
+{
+	HelpText = FString::Printf(TEXT("Нажмите E, что бы поднять: %s"), *text);
 }
 
 void ALatusCharacter::OnFire()

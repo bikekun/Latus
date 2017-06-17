@@ -1,87 +1,82 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
+
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <ItemGroup>
-    <None Include="..\..\Latus.uproject" />
-    <Filter Include="Source">
-      <UniqueIdentifier>{F1C12E71-5711-4AFA-A421-896DA7B49C83}</UniqueIdentifier>
-    </Filter>
-    <None Include="..\..\Source\Latus.Target.cs">
-      <Filter>Source</Filter>
-    </None>
-    <None Include="..\..\Source\LatusEditor.Target.cs">
-      <Filter>Source</Filter>
-    </None>
-    <Filter Include="Config">
-      <UniqueIdentifier>{B9F9C3E0-CDC7-4260-926D-23317BC2A868}</UniqueIdentifier>
-    </Filter>
-    <None Include="..\..\Config\DefaultEditor.ini">
-      <Filter>Config</Filter>
-    </None>
-    <None Include="..\..\Config\DefaultEditorPerProjectUserSettings.ini">
-      <Filter>Config</Filter>
-    </None>
-    <None Include="..\..\Config\DefaultEngine.ini">
-      <Filter>Config</Filter>
-    </None>
-    <None Include="..\..\Config\DefaultGame.ini">
-      <Filter>Config</Filter>
-    </None>
-    <None Include="..\..\Config\DefaultInput.ini">
-      <Filter>Config</Filter>
-    </None>
-    <Filter Include="Source\Latus">
-      <UniqueIdentifier>{CDCCCD55-E5CE-41BB-990D-8A2E43F52F98}</UniqueIdentifier>
-    </Filter>
-    <None Include="..\..\Source\Latus\Latus.Build.cs">
-      <Filter>Source\Latus</Filter>
-    </None>
-    <ClCompile Include="..\..\Source\Latus\Latus.cpp">
-      <Filter>Source\Latus</Filter>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\Latus\Latus.h">
-      <Filter>Source\Latus</Filter>
-    </ClInclude>
-    <ClCompile Include="..\..\Source\Latus\LatusCharacter.cpp">
-      <Filter>Source\Latus</Filter>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\Latus\LatusCharacter.h">
-      <Filter>Source\Latus</Filter>
-    </ClInclude>
-    <ClCompile Include="..\..\Source\Latus\LatusGameMode.cpp">
-      <Filter>Source\Latus</Filter>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\Latus\LatusGameMode.h">
-      <Filter>Source\Latus</Filter>
-    </ClInclude>
-    <ClCompile Include="..\..\Source\Latus\LatusHUD.cpp">
-      <Filter>Source\Latus</Filter>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\Latus\LatusHUD.h">
-      <Filter>Source\Latus</Filter>
-    </ClInclude>
-    <ClCompile Include="..\..\Source\Latus\LatusProjectile.cpp">
-      <Filter>Source\Latus</Filter>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\Latus\LatusProjectile.h">
-      <Filter>Source\Latus</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Filter Include="Source\Latus\ItemsCpp">
-      <UniqueIdentifier>{0ec53311-1274-4e48-ade2-bb1d903fc447}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\Latus\ItemsCpp\base">
-      <UniqueIdentifier>{ec5d0277-857e-4b67-ae6e-fc3fd4c39a5b}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\Source\Latus\ItemsCpp\base\InteractActor.h">
-      <Filter>Source\Latus\ItemsCpp\base</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\Source\Latus\ItemsCpp\base\InteractActor.cpp">
-      <Filter>Source\Latus\ItemsCpp\base</Filter>
-    </ClCompile>
-  </ItemGroup>
+	<ItemGroup>
+		<None Include="..\..\Latus.uproject" />
+		<Filter Include="Source">
+			<UniqueIdentifier>{8CACC33E-D33A-4140-9F20-594EEC2174CC}</UniqueIdentifier>
+		</Filter>
+		<None Include="..\..\Source\Latus.Target.cs">
+			<Filter>Source</Filter>
+		</None >
+		<None Include="..\..\Source\LatusEditor.Target.cs">
+			<Filter>Source</Filter>
+		</None >
+		<Filter Include="Config">
+			<UniqueIdentifier>{9350E88D-599F-477D-8A58-2A7160A2EBBB}</UniqueIdentifier>
+		</Filter>
+		<None Include="..\..\Config\DefaultEditor.ini">
+			<Filter>Config</Filter>
+		</None >
+		<None Include="..\..\Config\DefaultEditorPerProjectUserSettings.ini">
+			<Filter>Config</Filter>
+		</None >
+		<None Include="..\..\Config\DefaultEngine.ini">
+			<Filter>Config</Filter>
+		</None >
+		<None Include="..\..\Config\DefaultGame.ini">
+			<Filter>Config</Filter>
+		</None >
+		<None Include="..\..\Config\DefaultInput.ini">
+			<Filter>Config</Filter>
+		</None >
+		<Filter Include="Source\Latus">
+			<UniqueIdentifier>{D5F4F5DB-9A19-427A-86C9-96C70D5EA1BD}</UniqueIdentifier>
+		</Filter>
+		<None Include="..\..\Source\Latus\Latus.Build.cs">
+			<Filter>Source\Latus</Filter>
+		</None >
+		<ClCompile Include="..\..\Source\Latus\Latus.cpp">
+			<Filter>Source\Latus</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\Latus\Latus.h">
+			<Filter>Source\Latus</Filter>
+		</ClInclude >
+		<ClCompile Include="..\..\Source\Latus\LatusCharacter.cpp">
+			<Filter>Source\Latus</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\Latus\LatusCharacter.h">
+			<Filter>Source\Latus</Filter>
+		</ClInclude >
+		<ClCompile Include="..\..\Source\Latus\LatusGameMode.cpp">
+			<Filter>Source\Latus</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\Latus\LatusGameMode.h">
+			<Filter>Source\Latus</Filter>
+		</ClInclude >
+		<ClCompile Include="..\..\Source\Latus\LatusHUD.cpp">
+			<Filter>Source\Latus</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\Latus\LatusHUD.h">
+			<Filter>Source\Latus</Filter>
+		</ClInclude >
+		<ClCompile Include="..\..\Source\Latus\LatusProjectile.cpp">
+			<Filter>Source\Latus</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\Latus\LatusProjectile.h">
+			<Filter>Source\Latus</Filter>
+		</ClInclude >
+		<Filter Include="Source\Latus\ItemsCpp">
+			<UniqueIdentifier>{24A6C8ED-B29D-474C-B532-0B657A6A2A14}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="Source\Latus\ItemsCpp\base">
+			<UniqueIdentifier>{67A0C796-6FE0-45D1-95F4-797877FF2F05}</UniqueIdentifier>
+		</Filter>
+		<ClCompile Include="..\..\Source\Latus\ItemsCpp\base\InteractActor.cpp">
+			<Filter>Source\Latus\ItemsCpp\base</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\Latus\ItemsCpp\base\InteractActor.h">
+			<Filter>Source\Latus\ItemsCpp\base</Filter>
+		</ClInclude >
+	</ItemGroup>
 </Project>
