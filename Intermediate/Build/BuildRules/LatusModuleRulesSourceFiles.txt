@@ -1,0 +1,3 @@
+D:\Epic Games\project\Latus\Source\Latus\Latus.Build.cs
+D:\Epic Games\project\Latus\Source\Latus.Target.cs
+D:\Epic Games\project\Latus\Source\LatusEditor.Target.cs
