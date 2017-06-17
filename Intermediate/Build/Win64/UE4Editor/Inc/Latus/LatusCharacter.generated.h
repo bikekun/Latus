@@ -38,6 +38,14 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 		P_NATIVE_BEGIN; \
 		this->SetHelpText(Z_Param_text); \
 		P_NATIVE_END; \
+	} \
+ \
+	DECLARE_FUNCTION(execInteract) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		this->Interact(); \
+		P_NATIVE_END; \
 	}
 
 
@@ -65,6 +73,14 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 		P_FINISH; \
 		P_NATIVE_BEGIN; \
 		this->SetHelpText(Z_Param_text); \
+		P_NATIVE_END; \
+	} \
+ \
+	DECLARE_FUNCTION(execInteract) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		this->Interact(); \
 		P_NATIVE_END; \
 	}
 

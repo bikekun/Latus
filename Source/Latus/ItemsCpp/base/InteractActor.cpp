@@ -61,6 +61,12 @@ void AInteractActor::OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AActor* O
 	}
 }
 
+void AInteractActor::Pickup()
+{
+	GLog->Log(FString::Printf(TEXT("Pickup: %s"), *Parameters.ItemName));
+	Destroy();
+}
+
 // Called every frame
 //void AInteractActor::Tick(float DeltaTime)
 //{

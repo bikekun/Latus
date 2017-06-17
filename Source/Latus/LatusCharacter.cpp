@@ -10,6 +10,8 @@
 #include "Kismet/HeadMountedDisplayFunctionLibrary.h"
 #include "Kismet/GameplayStatics.h"
 #include "MotionControllerComponent.h"
+#include "ItemsCpp/base/InteractActor.h"
+#include "DrawDebugHelpers.h"
 
 DEFINE_LOG_CATEGORY_STATIC(LogFPChar, Warning, All);
 
@@ -83,6 +85,7 @@ ALatusCharacter::ALatusCharacter()
 	//bUsingMotionControllers = true;
 
 	HelpText = "";
+	MaxRangeInteract = 300.f;
 }
 
 void ALatusCharacter::BeginPlay()
@@ -117,6 +120,9 @@ void ALatusCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerInp
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
 
+	PlayerInputComponent->BindAction("Interact", IE_Pressed, this, &ALatusCharacter::Interact);
+
+
 	//InputComponent->BindTouch(EInputEvent::IE_Pressed, this, &ALatusCharacter::TouchStarted);
 	if (EnableTouchscreenMovement(PlayerInputComponent) == false)
 	{
@@ -137,6 +143,33 @@ void ALatusCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerInp
 	PlayerInputComponent->BindAxis("LookUpRate", this, &ALatusCharacter::LookUpAtRate);
 }
 
+
+void ALatusCharacter::Interact()
+{
+	if (HelpText != "")
+	{
+		
+		FVector StartPosition = GetFirstPersonCameraComponent()->GetComponentLocation();
+		FVector EndPosition = (GetFirstPersonCameraComponent()->GetForwardVector() * MaxRangeInteract) + StartPosition;
+
+		FHitResult HitResult;
+		FCollisionQueryParams FQP;
+		FQP.AddIgnoredActor(this);
+
+	//	DrawDebugLine(GetWorld(), StartPosition, EndPosition, FColor::Red, true, 5.f);
+		GetWorld()->LineTraceSingleByChannel(HitResult, StartPosition, EndPosition, ECC_Visibility, FQP);
+
+		if (HitResult.GetActor() != nullptr)
+		{
+			AInteractActor* Item = Cast<AInteractActor>(HitResult.GetActor());
+
+			if (Item != nullptr)
+			{
+				Item->Pickup();
+			}
+		}
+	}
+}
 
 void ALatusCharacter::SetHelpText(FString text)
 {

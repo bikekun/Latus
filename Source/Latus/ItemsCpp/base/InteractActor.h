@@ -48,6 +48,9 @@ public:
 	UFUNCTION()
 		void OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
 
+	UFUNCTION()
+		void Pickup();
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

@@ -142,14 +142,22 @@ private:
 		*/
 		FString HelpText;
 
+	UFUNCTION()
+		void Interact();
+
 public:
-	
+	/**дальность интеракта - вз€ти€ предмета*/
+	UPROPERTY(EditAnywhere)
+		float MaxRangeInteract;
+
 	/** »зменение всплывающей подсказки*/
 	UFUNCTION()
 		void SetHelpText(FString text);
 
 	UFUNCTION()
 		void ClearHelpText();
+
+
 
 	UFUNCTION(BlueprintCallable)
 	/** получение подсказки*/
